@@ -9,8 +9,6 @@ function preload() {
 function setup() {
   createCanvas(800, 600);
   background(100);
-  // print("number of parks", parks.getRowCount());
-  // print("park attributes", parks.getColumnCount());
 
   for (var i = 1; i < parks.getRowCount(); i++) {
     if (parks.get(i, 12) != "") {
