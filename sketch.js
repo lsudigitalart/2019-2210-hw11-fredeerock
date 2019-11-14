@@ -1,33 +1,30 @@
-var parks;
-var pNum = 0;
-var sNum = 0;
+var circulation;
 
 function preload() {
-  parks = loadTable("BREC_Parks.csv");
+  circulation = loadJSON("https://data.brla.gov/resource/m33w-s9q6.json");
 }
 
 function setup() {
+
   createCanvas(800, 600);
   background(100);
 
-  for (var i = 1; i < parks.getRowCount(); i++) {
-    if (parks.get(i, 12) != "") {
-      sNum = int(parks.get(i, 12)) + sNum;
-    }
+  noStroke();
+  print(circulation);
+  print(circulation[0].year);
+  print(circulation[0].month);
+  print(circulation[0].circulation_total);
+  print(Object.keys(circulation).length);
 
-    if (parks.get(i, 10) != "") {
-      pNum = int(parks.get(i, 10)) + pNum;
+  var i = 0;
+
+  for (var x = 20; x < width; x = x + 100) {
+    for (var y = 20; y < height; y = y + 100) {
+      fill(random(255), random(255), random(255));
+      circle(x, y, circulation[i].circulation_total / 5000);
+      i++;
     }
   }
-
-  print(pNum);
-  print(sNum);
-
-  //playgrouds
-  circle(200, height / 2, pNum * 2);
-
-  //swimming pools
-  circle(550, height / 2, sNum * 2);
 
 }
 
